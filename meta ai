@@ -1,0 +1,131 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/sandesh2005singh/portfolio.github.io/blob/main/meta%20ai\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "pip install meta-ai-api"
+      ],
+      "metadata": {
+        "collapsed": true,
+        "id": "4pdvx8x47A6A",
+        "outputId": "186c1ee1-e737-4337-dbab-319f847e4ef7",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: meta-ai-api in /usr/local/lib/python3.11/dist-packages (1.2.5)\n",
+            "Requirement already satisfied: requests in /usr/local/lib/python3.11/dist-packages (from meta-ai-api) (2.32.3)\n",
+            "Requirement already satisfied: requests-html in /usr/local/lib/python3.11/dist-packages (from meta-ai-api) (0.10.0)\n",
+            "Requirement already satisfied: lxml-html-clean in /usr/local/lib/python3.11/dist-packages (from meta-ai-api) (0.4.2)\n",
+            "Requirement already satisfied: lxml in /usr/local/lib/python3.11/dist-packages (from lxml-html-clean->meta-ai-api) (5.4.0)\n",
+            "Requirement already satisfied: charset-normalizer<4,>=2 in /usr/local/lib/python3.11/dist-packages (from requests->meta-ai-api) (3.4.1)\n",
+            "Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.11/dist-packages (from requests->meta-ai-api) (3.10)\n",
+            "Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.11/dist-packages (from requests->meta-ai-api) (1.26.20)\n",
+            "Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.11/dist-packages (from requests->meta-ai-api) (2025.4.26)\n",
+            "Requirement already satisfied: pyquery in /usr/local/lib/python3.11/dist-packages (from requests-html->meta-ai-api) (2.0.1)\n",
+            "Requirement already satisfied: fake-useragent in /usr/local/lib/python3.11/dist-packages (from requests-html->meta-ai-api) (2.2.0)\n",
+            "Requirement already satisfied: parse in /usr/local/lib/python3.11/dist-packages (from requests-html->meta-ai-api) (1.20.2)\n",
+            "Requirement already satisfied: bs4 in /usr/local/lib/python3.11/dist-packages (from requests-html->meta-ai-api) (0.0.2)\n",
+            "Requirement already satisfied: w3lib in /usr/local/lib/python3.11/dist-packages (from requests-html->meta-ai-api) (2.3.1)\n",
+            "Requirement already satisfied: pyppeteer>=0.0.14 in /usr/local/lib/python3.11/dist-packages (from requests-html->meta-ai-api) (2.0.0)\n",
+            "Requirement already satisfied: appdirs<2.0.0,>=1.4.3 in /usr/local/lib/python3.11/dist-packages (from pyppeteer>=0.0.14->requests-html->meta-ai-api) (1.4.4)\n",
+            "Requirement already satisfied: importlib-metadata>=1.4 in /usr/local/lib/python3.11/dist-packages (from pyppeteer>=0.0.14->requests-html->meta-ai-api) (8.7.0)\n",
+            "Requirement already satisfied: pyee<12.0.0,>=11.0.0 in /usr/local/lib/python3.11/dist-packages (from pyppeteer>=0.0.14->requests-html->meta-ai-api) (11.1.1)\n",
+            "Requirement already satisfied: tqdm<5.0.0,>=4.42.1 in /usr/local/lib/python3.11/dist-packages (from pyppeteer>=0.0.14->requests-html->meta-ai-api) (4.67.1)\n",
+            "Requirement already satisfied: websockets<11.0,>=10.0 in /usr/local/lib/python3.11/dist-packages (from pyppeteer>=0.0.14->requests-html->meta-ai-api) (10.4)\n",
+            "Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.11/dist-packages (from bs4->requests-html->meta-ai-api) (4.13.4)\n",
+            "Requirement already satisfied: cssselect>=1.2.0 in /usr/local/lib/python3.11/dist-packages (from pyquery->requests-html->meta-ai-api) (1.3.0)\n",
+            "Requirement already satisfied: zipp>=3.20 in /usr/local/lib/python3.11/dist-packages (from importlib-metadata>=1.4->pyppeteer>=0.0.14->requests-html->meta-ai-api) (3.21.0)\n",
+            "Requirement already satisfied: typing-extensions in /usr/local/lib/python3.11/dist-packages (from pyee<12.0.0,>=11.0.0->pyppeteer>=0.0.14->requests-html->meta-ai-api) (4.13.2)\n",
+            "Requirement already satisfied: soupsieve>1.2 in /usr/local/lib/python3.11/dist-packages (from beautifulsoup4->bs4->requests-html->meta-ai-api) (2.7)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from meta_ai_api import MetaAI\n",
+        "\n",
+        "def main(prompts):\n",
+        "  ai = MetaAI()\n",
+        "  response = ai.prompt(prompts)\n",
+        "  return response['message'].strip()\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "  while True:\n",
+        "    if prompts == \"exit\":\n",
+        "      break\n",
+        "    prompts = input(\"enter your prompt : \")\n",
+        "    print(main(prompts))\n",
+        "\n",
+        ""
+      ],
+      "metadata": {
+        "id": "if393_oQ7JDX",
+        "outputId": "e9f1f109-9d9c-4295-ca7f-e0cbc205ab6e",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "enter your prompt : hey\n",
+            "hey! what's up?\n",
+            "enter your prompt : can u generate a image\n",
+            "Please log in to generate images.\n",
+            "enter your prompt : ok\n",
+            "ok! What's up?\n",
+            "enter your prompt : exit\n",
+            "It was nice chatting with you. Have a great day!\n"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3 (ipykernel)",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.7.13"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
